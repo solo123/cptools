@@ -8,7 +8,7 @@ class Email
 		_from = Base64.b64encode('酷购客服')
 		
 		msg = <<MESSAGE_END
-From: #{_from} <service@coolpur.cn>
+From:=?UTF-8?B?#{_from}?=  <service@coolpur.cn>
 To:  <#{to_email}>
 MIME-Version: 1.0
 Content-type: text/plain;charset=utf-8
@@ -23,4 +23,4 @@ MESSAGE_END
 
 end
 
-Email.new.SendEmail('solo123@21cn.com', '测试邮件', '这是一封测试邮件\n第二行\nRegards,\nJimmy Liang')
+Email.new.SendEmail('sales@coolpur.cn', '测试邮件', '这是一封测试邮件\n第二行\nRegards,\nJimmy Liang')

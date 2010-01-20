@@ -5,7 +5,7 @@ require 'sms'
 class ProcessNotifier < Daemon::Base
   def self.start
     loop do
-		File.open('result', 'a') do |f|
+		File.open('result.out', 'a') do |f|
 			f.puts "==> " << Time.now.to_s
 			process_notifiers(f)
 		end

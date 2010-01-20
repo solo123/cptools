@@ -1,20 +1,22 @@
 require 'net/smtp'
+require 'base64'
 
 class Email
 	def SendEmail(to_email, subject, message)
-		msgstr = <<END_OF_MESSAGE
-From: 酷购客服 <service@coolpur.cn>
+
+		_sub = Base64.b64encode(subject)
+		msg = <<MESSAGE_END
+From: coolpur.com <service@coolpur.cn>
 To:  <#{to_email}>
-Subject: #{subject}
-Date: #{Time.now}
-Message-Id: <unique.message.id.string@example.com>
+MIME-Version: 1.0
+Content-type: text/plain;charset=utf-8
+Subject:=?UTF-8?B?#{_sub.rstrip}?=
 
-    #{message}
-END_OF_MESSAGE
-
-    	Net::SMTP.start('mail.coolpur.cn', 25) do |smtp|
-      		smtp.send_message msgstr, 'service@coolpur.cn', to_email
-	    end
+#{message}
+MESSAGE_END
+		Net::SMTP.start('lcalhost', 25) do |smtp|
+			smtp.send_message msg, 'service@coolpur.cn', to_email
+		end
 	end
 
 end

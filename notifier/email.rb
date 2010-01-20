@@ -14,7 +14,7 @@ Subject:=?UTF-8?B?#{_sub.rstrip}?=
 
 #{message}
 MESSAGE_END
-		Net::SMTP.start('lcalhost', 25) do |smtp|
+		Net::SMTP.start('localhost', 25) do |smtp|
 			smtp.send_message msg, 'service@coolpur.cn', to_email
 		end
 	end

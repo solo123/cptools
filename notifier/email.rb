@@ -6,7 +6,7 @@ class Email
 
 		_sub = Base64.b64encode(subject)
 		msg = <<MESSAGE_END
-From: "coolpur.cn" <service@coolpur.cn>
+From: "酷购.客服" <service@coolpur.cn>
 To:  <#{to_email}>
 MIME-Version: 1.0
 Content-type: text/plain;charset=utf-8

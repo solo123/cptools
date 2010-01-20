@@ -5,8 +5,10 @@ class Email
 	def SendEmail(to_email, subject, message)
 
 		_sub = Base64.b64encode(subject)
+		_from = Base64.b64encode('酷购客服')
+		
 		msg = <<MESSAGE_END
-From: coolpur.com <service@coolpur.cn>
+From: #{_from} <service@coolpur.cn>
 To:  <#{to_email}>
 MIME-Version: 1.0
 Content-type: text/plain;charset=utf-8

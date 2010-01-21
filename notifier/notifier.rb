@@ -5,6 +5,7 @@ require 'email'
 class ProcessNotifier 
 
   def self.process()
+	  puts ' ==> ' << Time.now.to_s
 	  ns = Notifier.all(:conditions => "status = 0") 
 	  if ns && ns.length>0
 		  sms = Sms.instance
@@ -14,6 +15,7 @@ class ProcessNotifier
 				  r = sms.SendSms(n.address, n.message)
 				  if r==0
 					  puts "Send sms(#{n.id}) to: #{n.address}, message: #{n.message}"
+					  n.sent_date = Time.now
 					  n.status = 1
 					  n.save
 				  else
@@ -23,10 +25,12 @@ class ProcessNotifier
 			  if (n.ntype == "EMAIL")
 				  puts "Send email(#{n.id}): #{n.address},  subject: #{n.subject}"
 				  em.SendEmail(n.address, n.subject, n.message)
+				  n.sent_date = Time.now
 				  n.status = 1
 				  n.save
 			  end
 		  end
+		  puts ' ---e---- \n'
 	  end
   end
 end

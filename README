@@ -1,1 +1,7 @@
 for db tools
+--------------------------
+
+.import    import date from excel to database.
+.notifier  send SMS/EMAIL by datatable notifier.
+.daemon    just a test for daemon.
+

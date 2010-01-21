@@ -1,14 +1,14 @@
-class Tt
-	def tt
-			i = 0;
-			loop do
-				i += 1
-				File.open('t.out','a') { |f|
-					f.puts "cnt -> " << i.to_s << "  " << Time.now.to_s
-				}
-				sleep(2)
-			end
+#!/usr/bin/env ruby
+require 'db_model'
+
+sms = Sms.new
+Notifier.all(:conditions => 'status=0').each do |n|
+	if sms.SendSms(n.address, n.message)
+		n.status = 1
+		n.sent_date = Time.now
+		n.save
 	end
 end
 
-Tt.new.tt
+
+

@@ -4,7 +4,7 @@ require 'base64'
 class Email
 	def SendEmail(to_email, subject, message)
 
-		_sub = Base64.b64encode(subject)
+		_sub = Base64.encode64(subject)
 		msg = <<MESSAGE_END
 From: "酷购.客服" <service@coolpur.cn>
 To:  <#{to_email}>
@@ -21,4 +21,3 @@ MESSAGE_END
 
 end
 
-Email.new.SendEmail('sales@coolpur.cn', '测试邮件', '这是一封测试邮件\n第二行\nRegards,\nJimmy Liang')

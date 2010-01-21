@@ -10,7 +10,7 @@ class ProcessNotifier < Daemon::Base
 			f.puts "==> " << Time.now.to_s
 			process_notifiers(f)
 		end
-		sleep(666666  end
+		sleep(60)  end
   end
 
   def self.stop

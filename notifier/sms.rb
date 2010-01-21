@@ -1,10 +1,7 @@
 require 'yaml'
 require 'soap/wsdlDriver'
-require 'singleton'
 
 class Sms
-  include Singleton
-  
   def initialize
     #Open the YAML configuration file
     @config = YAML.load_file("../config/config.yml")["development"]

@@ -22,10 +22,11 @@ def add_model(brand,model)
 		mn = model.to_s.upcase
 		m = Mobile.find(:first, :conditions => "brand_id=#{brand} and model='#{mn}'")
 		if !m
+			b = Brand.find(brand)
 			mb = Mobile.new
 			mb.brand_id = brand
 			mb.model = mn
-			mb.name = mn
+			mb.name = b.brand_name + mn
 			mb.price = 0
 			mb.status = 0
 			mb.save!
@@ -48,6 +49,9 @@ puts "Update to database: " << flag_force.to_s
 
 Dir.chdir ARGV[0]
 `ls -d */`.split("\n").each do |brandline|
+	if brandline =~ /(新建|kankan|Recy)/
+		next
+	end
 	brand = brandline.chop
 	puts ">> Brand: " << brand
 	brand_id = flag_force ? add_brand(brand) : 0
